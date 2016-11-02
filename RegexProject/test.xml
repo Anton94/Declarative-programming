@@ -7,34 +7,44 @@
 	<test6 foo="flas">  sfsaf flas  fsasf  sfa </test6>
 	<test7   foo="flas" >  sasfaf3123 2133sfsaf flas  fsasf  sfa </test7>
 	<blab id="00" foo="flas"> 
-		<mlab>
-			<testFail id="00" foo="flas"> fla sflas </testFail>
-			<test1 id="00" foo="flas">  safsaf flas</test1>
-
-			<testFail id="01" foo="flas"> fla sflas </testFail>
-			<test2 id="01" foo="flas">flas2safsaf flas fs</test2>
-
-			<testFail foo="flas" id="02"> fla12s s </testFail>
-			<test3 id="02" foo="flas" bar="vll">flas</test3>
-
-			<testFail foo="flas"  bar="vll"  id="03"   > fla 2s </testFail>
-			<test4 id="03" foo="flas" bar="vll" > flas </test4>
-
-			<testFail foo="flass"> flas </testFail>
-			<test5 id="04" foo="flas" bar="vll" >  sfsaf flas  fsasf  sfa </test5>
-
-			<testFail foo="flass"> flass </testFail>
-			<test6 foo="flas">  sfsaf flas  fsasf  sfa </test6>
-
-			<testFail foo="saf flas"> fla s </testFail>
-			<test7   foo="flas" >  sasfaf3123 2133sfsaf flas  fsasf  sfa </test7>
-			
-
+		<mlab>			
 			<testFail1 fooo="flas"> flas </testFail1>
 			<testFail2   212foo="flas"> flas </testFail2>
 			<testFail3   foo12="flas"> flas </testFail3>
 			<testFail4   foo12="flas"   > flas </testFail4>
-			<testFail1 ofooo="flas"> flas </testFail1>
+			<testFail5 ofooo="flas"> flas </testFail5>
+			<testFail6 ofooo="flas" foo="flas"  flas </testFail6>
+			<testFail7 ofooo="flas">123flas123</testFail7>
+
+			<testFail8 id="00" foo="flas"> fla sflas </testFail8>
+			<test8 id="00" foo="flas">  safsaf flas</test8>
+
+			<testFail9 id="01" foo="flas"> fla sflas </testFail9>
+			<test9 id="01" foo="flas">flas2safsaf flas fs</test9>
+
+			<testFail10 foo="flas" id="02"> fla12s s </testFail10>
+			<test10 id="02" foo="flas" bar="vll">flas</test10>
+
+			<testFail11 foo="fflas"  bar="vll"  id="03"   > flas </testFail11>
+			<test11 id="03" foo="flas" bar="vll" > flas </test11>
+
+			<testFail12 foo="12flas"> flas </testFail12>
+			<test12 id="04" foo="flas" bar="vll" >  sfsaf flas  fsasf  sfa </test12>
+
+			<testFail13 foo="flass"> flass </testFail13>
+			<test13 foo="flas">  sfsaf flas  fsasf  sfa </test13>
+
+			<testFail14 foo="saf flas"> fla s </testFail14>
+			<test14   foo="flas" >  sasfaf3123 
+
+				2133sfsaf flas  fsasf  sfa </test14>		
+
+
+			<test15 ofooo="flas" foo="flas" foo="bar">123flas123 flas asfqwe sad   </test15>
+			<  test16 ofooo="flas" foo="flas"> flas </test16>
+			<test17 ofooo="flas" foo="flas"> flas </test17>
+			<test18 ofooo="flas" foo="flas">123flas123 flas asfqwe sad   </test18>
+
 		</mlab>
 	</blab>
 
