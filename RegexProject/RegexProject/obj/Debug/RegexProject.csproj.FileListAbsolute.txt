@@ -1,0 +1,5 @@
+C:\Users\Anton\Documents\Visual Studio 2015\Projects\RegexProject\RegexProject\bin\Debug\RegexProject.exe
+C:\Users\Anton\Documents\Visual Studio 2015\Projects\RegexProject\RegexProject\bin\Debug\RegexProject.pdb
+C:\Users\Anton\Documents\Visual Studio 2015\Projects\RegexProject\RegexProject\obj\Debug\RegexProject.csprojResolveAssemblyReference.cache
+C:\Users\Anton\Documents\Visual Studio 2015\Projects\RegexProject\RegexProject\obj\Debug\RegexProject.exe
+C:\Users\Anton\Documents\Visual Studio 2015\Projects\RegexProject\RegexProject\obj\Debug\RegexProject.pdb
