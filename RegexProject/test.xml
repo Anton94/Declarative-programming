@@ -1,4 +1,5 @@
 <root>
+	<test0 foo="flas" id="00">  safsaf flas</test0>
 	<test1 id="00" foo="flas">  safsaf flas</test1>
 	<test2 id="01" foo="flas">flas2safsaf flas fs</test2>
 	<test3 id="02" foo="flas" bar="vll">flas</test3>
@@ -8,6 +9,7 @@
 	<test7   foo="flas" >  sasfaf3123 2133sfsaf flas  fsasf  sfa </test7>
 	<blab id="00" foo="flas"> 
 		<mlab>			
+			<testFail0 foo="fla s" id="00">  safsaf flas</testFail0>
 			<testFail1 fooo="flas"> flas </testFail1>
 			<testFail2   212foo="flas"> flas </testFail2>
 			<testFail3   foo12="flas"> flas </testFail3>
@@ -44,6 +46,19 @@
 			<  test16 ofooo="flas" foo="flas"> flas </test16>
 			<test17 ofooo="flas" foo="flas"> flas </test17>
 			<test18 ofooo="flas" foo="flas">123flas123 flas asfqwe sad   </test18>
+			<test19 ofooo="flas" foo="flas">123flas123 fflas asfqwe sad        flas   
+				sfa
+				saf</test19>
+
+
+			<testFail15 fo o="flas">flas</testFail15>
+			<testFail16 foo ="fla s">flas</testFail16>
+			<testFail17 foo ="flas"  >fla s</testFail17>
+			<testFail18            foo ="flas"  >   flas1 </testFail18>
+			<testFail19 ofooo="flas" foo="flas">123flas123 fflas asfqwe sad           </testFail19>
+			<testFail20 id="00"foo="flas">  safsaf flas</testFail20>
+			<testFail21 foo="fls" ab="flas"> flas </testFail21>
+			<testFail22 ab="flas" foo="fls" > flas </testFail22>
 
 		</mlab>
 	</blab>

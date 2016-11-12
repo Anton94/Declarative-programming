@@ -45,6 +45,9 @@ namespace RegexProject
             string text = System.IO.File.ReadAllText(@"../../../test.xml");
 
             solution(text, "foo", "flas");
+            // No matches tests
+            solution(text, "foo", "abc");
+            solution(text, "id", "00");
         }
     }
 }
