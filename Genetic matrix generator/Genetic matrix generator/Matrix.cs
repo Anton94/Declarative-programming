@@ -33,15 +33,21 @@ namespace Genetic_matrix_generator
             this.life = life;
         }
 
-        public Matrix setAvarageOfTwoMatrixes(Matrix a, Matrix b)
+        public Matrix setAvarageOfTwoMatrixes(Matrix [] m) // expect at least two element array!
         {
-            if (size != a.size || a.size != b.size)
+            if (m == null || m[0] == null || m[1] == null || size != m[0].size || m[0].size != m[1].size)
                 throw new Exception("Error in set avarage values of two matrixes!");
 
             for (int i = 0; i < size; ++i)
                 for (int j = 0; j < size; ++j)
-                    this[i, j] = (a[i, j] + b[i, j]) / 2.0;
+                    this[i, j] = (m[0][i, j] + m[1][i, j]) / 2.0;
 
+            return this;
+        }
+
+        public Matrix DecLife()
+        {
+            life -= 1;
             return this;
         }
 

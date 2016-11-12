@@ -23,5 +23,19 @@ namespace Genetic_matrix_generator
 
             return rnd.Next(range[0], range[1] + 1); // TODO: Overflow if range[1] is only 1's in binary...
         }
+
+        // Returns a pair of random numbers (different!) in the range[range[0], range[1]) !!
+        public static int[] NextPair(int a, int b)
+        {
+            int[] pair = new int[2];
+            pair[0] = rnd.Next(a, b);
+            
+            do
+            {
+                pair[1] = rnd.Next(a, b);
+            } while (pair[0] == pair[1]);
+
+            return pair;
+        }
     }
 }
