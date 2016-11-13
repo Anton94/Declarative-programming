@@ -33,16 +33,27 @@ namespace Genetic_matrix_generator
             this.life = life;
         }
 
-        public Matrix setAvarageOfTwoMatrixes(Matrix [] m) // expect at least two element array!
+        public Matrix setAvarage(List<Matrix> m) // expect at least two element array!
         {
-            if (m == null || m[0] == null || m[1] == null || size != m[0].size || m[0].size != m[1].size)
-                throw new Exception("Error in set avarage values of two matrixes!");
+            // TODO: check matrix sizes if needed
+            //    throw new Exception("Error in set avarage of matrix!");
+            if (m.Count <= 0)
+                return this;
 
             for (int i = 0; i < size; ++i)
                 for (int j = 0; j < size; ++j)
-                    this[i, j] = (m[0][i, j] + m[1][i, j]) / 2.0;
+                    this[i, j] = sum(m, i, j) / m.Count; // Very bad, cache misses a lot but for now is good...
 
             return this;
+        }
+
+        private double sum(List<Matrix> matrixes, int i, int j)
+        {
+            double sum = 0.0;
+
+            matrixes.ForEach(m => sum += m[i, j]);
+
+            return sum;
         }
 
         public Matrix DecLife()

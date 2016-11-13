@@ -14,7 +14,6 @@ namespace Genetic_matrix_generator
             rnd = new Random(seed);
         }
 
-
         /// Returns random number in range[ range[0] , range[1] ]
         public static int Next(int [] range)
         {
@@ -24,18 +23,28 @@ namespace Genetic_matrix_generator
             return rnd.Next(range[0], range[1] + 1); // TODO: Overflow if range[1] is only 1's in binary...
         }
 
-        // Returns a pair of random numbers (different!) in the range[range[0], range[1]) !!
-        public static int[] NextPair(int a, int b)
+        // Returns a list of @count random numbers (different!) in the range[range[0], range[1]) !!
+        // If @count is bigger than the range- returns empty list.
+        public static List<int> NextRandsInRange(int a, int b, int count)
         {
-            int[] pair = new int[2];
-            pair[0] = rnd.Next(a, b);
-            
-            do
-            {
-                pair[1] = rnd.Next(a, b);
-            } while (pair[0] == pair[1]);
+            List<int> rands = new List<int>(count); // by default the elements are 0
+            int tmp;
 
-            return pair;
+            if (count > b - a)
+                return new List<int>();
+
+            rands.ForEach(x => x = -1); 
+
+            for (int i = 0; i < count; ++i)
+            {
+                do
+                {
+                    tmp = rnd.Next(a, b);
+                } while (rands.Contains(tmp));
+                rands.Add(tmp);
+            }
+
+            return rands;
         }
     }
 }
