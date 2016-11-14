@@ -98,7 +98,8 @@ namespace Genetic_matrix_generator
             return res;
         }
 
-        public void setDefaultValues(double val)
+        // Sets all cells to @val value...
+        public Matrix setDefaultValues(double val)
         {
             for (int i = 0; i < size; ++i)
             {
@@ -107,6 +108,22 @@ namespace Genetic_matrix_generator
                     matrix[i, j] = val;
                 }
             }
+
+            return this;
+        }
+
+        // Multiplies the value in the cell by it's i * j indexes
+        public Matrix multiplyByIndexes()
+        {
+            for (int i = 0; i < size; ++i)
+            {
+                for (int j = 0; j < size; ++j)
+                {
+                    matrix[i, j] *= (i + 1) * (j + 1);
+                }
+            }
+
+            return this;
         }
 
         private void createMatrix(int n)

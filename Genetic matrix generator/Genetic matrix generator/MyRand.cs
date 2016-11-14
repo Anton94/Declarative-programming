@@ -23,28 +23,26 @@ namespace Genetic_matrix_generator
             return rnd.Next(range[0], range[1] + 1); // TODO: Overflow if range[1] is only 1's in binary...
         }
 
-        // Returns a list of @count random numbers (different!) in the range[range[0], range[1]) !!
+        // Returns a "list" of @count random numbers (different!) in the range[range[0], range[1]) !!
         // If @count is bigger than the range- returns empty list.
-        public static List<int> NextRandsInRange(int a, int b, int count)
+        // As "generator" loses it's main advantage - keeps a list with already generated elements...
+        public static IEnumerable<int> NextRandsInRange(int a, int b, int count)
         {
-            List<int> rands = new List<int>(count); // by default the elements are 0
-            int tmp;
-
-            if (count > b - a)
-                return new List<int>();
-
-            rands.ForEach(x => x = -1); 
-
-            for (int i = 0; i < count; ++i)
+            if (count <= b - a)
             {
-                do
-                {
-                    tmp = rnd.Next(a, b);
-                } while (rands.Contains(tmp));
-                rands.Add(tmp);
-            }
+                List<int> rands = new List<int>(count); // by default the elements are 0
+                rands.ForEach(x => x = -1); // make them -1
 
-            return rands;
+                for (int i = 0, tmp; i < count; ++i)
+                {
+                    do
+                    {
+                        tmp = rnd.Next(a, b);
+                    } while (rands.Contains(tmp));
+                    rands.Add(tmp);
+                    yield return tmp;
+                }
+            }
         }
     }
 }

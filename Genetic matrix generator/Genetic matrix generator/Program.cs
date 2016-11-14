@@ -10,7 +10,7 @@ namespace Genetic_matrix_generator
         // and after that returns a list with @count "pointers" to the matrixes on thows random generated indexes of the given @list.
         private static List<Matrix> listGetRandomElements(List<Matrix> list, int count, bool printDebugInfo)
         {
-            List<int> rands = MyRand.NextRandsInRange(0, list.Count, count);
+            List<int> rands = MyRand.NextRandsInRange(0, list.Count, count).ToList();
             
             // Only for debugging purposes...
             if (printDebugInfo)
@@ -23,7 +23,10 @@ namespace Genetic_matrix_generator
                 foreach (int i in rands)
                     Console.Write(list[i] + "\n");
             }
-            return rands.Select(i => list[i]).ToList() ;
+            return rands.Select(i => list[i]).ToList();
+
+            // Without debugging info:
+            // return MyRand.NextRandsInRange(0, list.Count, count).Select(i => list[i]).ToList();
         }
 
         // Adds a matrix to the list and returns the list.
@@ -41,9 +44,9 @@ namespace Genetic_matrix_generator
         }
         
         // The iterator...
-        public static IEnumerable<Matrix> generateMatrix(List<Matrix> inputList, int numOfParents = 2, int COUNT = int.MaxValue, bool printDebugInfo = false) // A bad style of infinity... but good enough for now...
+        public static IEnumerable<Matrix> generateMatrix(List<Matrix> inputList, int numOfParents = 2, int COUNT = int.MaxValue, bool printDebugInfo = false) // int.MaxValue - a bad style of infinity... but good enough for now...
         {
-            int n = inputList[0].size; // Just to be more clear, I can use @a.size otherwise...
+            int n = inputList[0].size; // Just to be more clear
 
             List<Matrix> list = new List<Matrix>(inputList);
             
@@ -62,8 +65,9 @@ namespace Genetic_matrix_generator
             }
         }
 
-        // Generates @COUNT matrixes with sizes @SIZEx@SIZE and making values depending on @numParents "parent" random matrixes of already generated (and alive).
-        // and depends on printDebugInfo- prints (or not) info for the chosen random matrixes and current matrixes in the list
+        // Generates @COUNT matrixes with sizes @SIZEx@SIZE 
+        // and values - chooses @numParents(number of parents) random matrixes of already generated (and alive) once and makes average.
+        // printDebugInfo- prints (or not) info for the chosen random matrixes and current matrixes in the list.
         public static void test(int SIZE, int COUNT, int numParents, bool printDebugInfo)
         {
             Matrix.setLifeRange(numParents, numParents + 3); // Setting life range of the matrixes
@@ -73,6 +77,7 @@ namespace Genetic_matrix_generator
             List<Matrix> inputList = new List<Matrix>();
             for (int i = 0; i < numParents; ++i)
             {
+            //    inputList.Add(new Matrix(SIZE, i, numParents + (i % 3)).multiplyByIndexes()); // To test with "different" cell values.
                 inputList.Add(new Matrix(SIZE, i, numParents + (i % 3)));
             }
 
