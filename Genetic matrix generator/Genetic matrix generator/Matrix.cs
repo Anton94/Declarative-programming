@@ -17,13 +17,12 @@ namespace Genetic_matrix_generator
         {
             this.n = n;
             matrix = new double[n * n].Select(x => x = val).ToArray();
-            life = Program.rnd.Next(lifeMin, lifeMax + 1);
+            life = Program.rnd.Next(lifeMin, lifeMax + 1) + 1;// + 1 because after each generation, I decrement the lifes..
         }
 
         public Matrix setAvarage(Matrix a, Matrix b)
         {
-            foreach (int i in Enumerable.Range(0, matrix.Count()))
-                matrix[i] = (a.matrix[i] + b.matrix[i]) * 0.5;
+            matrix = a.matrix.Zip(b.matrix, (left, right) => (left + right) * 0.5).ToArray();
 
             return this;
         }
