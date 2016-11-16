@@ -3,19 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 
 namespace Genetic_matrix_generator
-{ 
+{
+    public static class ListExtensions
+    {
+        public static List<T> listAdd<T>(this List<T> list, T t)
+        {
+            list.Add(t);
+            return list;
+        }
+    }
     public class Program
     {
         // Random seed.
         public static Random rnd;
 
 
-        // Adds a matrix to the list and returns the list.
-        private static List<Matrix> listAdd(Matrix m, List<Matrix> list)
-        {
-            list.Add(m);
-            return list;
-        }
+        //// Adds a matrix to the list and returns the list.
+        //private static List<Matrix> listAdd(Matrix m, List<Matrix> list)
+        //{
+        //    list.Add(m);
+        //    return list;
+        //}
 
         // Prints the matrixes in the given @list.
         private static void listPrint(List<Matrix> list)
@@ -38,22 +46,35 @@ namespace Genetic_matrix_generator
         {
             List<Matrix> list = new List<Matrix> { a, b };
             
-            while (true)
+            while (list.Count >= 2)
             {
                 if (printDebugInfo) listPrint(list);
-                yield return listAdd(
-                            // First - find the new element depending on the current states of the matrixes in the list.
-                            new Matrix(a.n).setAvarage(getRandFromList(list, printDebugInfo), getRandFromList(list, printDebugInfo)),
-                            // after that apply the decrementing of matrixes lifes("map") and get those with lifes <= 0 out of the list ("filter").
-                            list = list.Select(m => m.DecLife()).ToList().Where<Matrix>(m => m.life > 0).ToList()
-                            ) // And add the new generated matrix to the list - "listAdd".
-                            .Where<Matrix>(m => m.life > 0).ToList(). // Only removes the new one if it has life 0, costly operation .. I dont like it..                            
-                            Last(); // Returns the last added element to the list.
-                
+                //yield return listAdd(
+                //            // First - find the new element depending on the current states of the matrixes in the list.
+                //            new Matrix(a.n).setAvarage(getRandFromList(list, printDebugInfo), getRandFromList(list, printDebugInfo)),
+                //            // after that apply the decrementing of matrixes lifes("map") and get those with lifes <= 0 out of the list ("filter").
+                //            list = list.Select(m => m.DecLife()).ToList().Where<Matrix>(m => m.life > 0).ToList()
+                //            ) // And add the new generated matrix to the list - "listAdd".
+                //            .Where<Matrix>(m => m.life > 0).ToList(). // Only removes the new one if it has life 0, costly operation .. I dont like it..                            
+                //            Last(); // Returns the last added element to the list.
+
                 // Generate the new element
                 // Reduce life of matrixes, filter the "dead" matrixes
                 // Add the new element to the list
                 // Filter the "dead" matrixes(because the new one could be born dead)
+                // Return the last added
+                
+                // BAD
+
+                // So, another logic
+                // Reduce lifes & filter the "dead" matrixes BUT "dead" -> life < 0 !!
+                // Generate the new matrix
+                // Add it to the list
+                // Return the last added
+
+                yield return (list = list.Select(m => m.DecLife()).ToList().Where<Matrix>(m => m.life >= 0).ToList()). // Map & filter
+                                listAdd(new Matrix(a.n).setAvarage(getRandFromList(list, printDebugInfo), getRandFromList(list, printDebugInfo))). // Generate the new matrix and adds it to the list
+                                Last();
             }
         }
 

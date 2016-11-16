@@ -36,22 +36,18 @@ namespace Genetic_matrix_generator
 
         public override string ToString()
         {
-            string res = "";
-
-           // foreach (double val in matrix) res += val.ToString() + " ";
-            matrix.ToList().ForEach(val => res += val.ToString() + " ");
-
+            // string.Join(" ", matrix.Select(x => x.ToString()).ToArray()
+            //     -> makes a string with all values, separate by space.
             // Now i need to split it in @n groups and add '\n' between them
             // ([^\s]?*\s) - detects the number and the space after it
             // {" + n.ToString() + "} - makes it @n times
-            res = String.Join("\n", Regex.Matches(res, @"([^\s]*?\s){" + n.ToString() + @"}").
+            return String.Join("\n", Regex.Matches(String.Join(" ", matrix.Select(x => x.ToString()).ToArray()), 
+                                    @"([^\s]*?\s){" + n.ToString() + @"}").
                                 OfType<Match>().
                                 Select(x => x.Value).
                                 ToArray()
-                            );
-            res += "\nLife = " + life.ToString() + " \n";
-
-            return res;
+                            ) +
+                            "\nLife = " + life.ToString() + " \n";
         }
     }
 }
