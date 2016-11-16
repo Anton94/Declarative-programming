@@ -46,8 +46,14 @@ namespace Genetic_matrix_generator
                             new Matrix(a.n).setAvarage(getRandFromList(list, printDebugInfo), getRandFromList(list, printDebugInfo)),
                             // after that apply the decrementing of matrixes lifes("map") and get those with lifes <= 0 out of the list ("filter").
                             list = list.Select(m => m.DecLife()).ToList().Where<Matrix>(m => m.life > 0).ToList()
-                            ). // And add the new generated matrix to the list - "listAdd".
+                            ) // And add the new generated matrix to the list - "listAdd".
+                            .Where<Matrix>(m => m.life > 0).ToList(). // Only removes the new one if it has life 0, costly operation .. I dont like it..                            
                             Last(); // Returns the last added element to the list.
+                
+                // Generate the new element
+                // Reduce life of matrixes, filter the "dead" matrixes
+                // Add the new element to the list
+                // Filter the "dead" matrixes(because the new one could be born dead)
             }
         }
 
@@ -56,16 +62,16 @@ namespace Genetic_matrix_generator
         // printDebugInfo- prints (or not) info for the chosen random matrixes and current matrixes in the list.
         public static void test(int SIZE, int COUNT, bool printDebugInfo)
         {
-            Matrix.lifeMin = 2;
+            Matrix.lifeMin = 0;
             Matrix.lifeMax = 5;
             rnd = new Random(0);
 
-            generateMatrix(new Matrix(SIZE, 1.0), new Matrix(SIZE, 5.0), printDebugInfo).
+            generateMatrix(new Matrix(SIZE, 1.0) { life = 2 }, new Matrix(SIZE, 5.0) { life = 3 }, printDebugInfo).
                             Take(COUNT).ToList().
-                            ForEach(m => Console.WriteLine("New generated:\n" + m)); 
+                            ForEach(m => Console.WriteLine("New generated:\n" + m));
             // The debugging info will be before the new generated and the life will not be with the generated value
-            // because first generates the @COUNT matrixes, and after that prints them, and the generator modifies the generated once
-            // decrements their lifes...
+            // because first generates the @COUNT matrixes, and after that prints them
+            // so the generator modifies the generated once, decrementing their lifes...
         }
 
         public static void Main(string[] args)
